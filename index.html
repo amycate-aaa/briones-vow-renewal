@@ -763,22 +763,22 @@ footer { background: #1a0608; padding: 40px 24px; text-align: center; }
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
           <div>
             <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_fname">First Name</label>
-            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="text" id="b_fname" name="first_name" placeholder="First name" required>
+            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="text" id="b_fname" required name="first_name" placeholder="First name" required>
           </div>
           <div>
             <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_lname">Last Name</label>
-            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="text" id="b_lname" name="last_name" placeholder="Last name" required>
+            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="text" id="b_lname" required name="last_name" placeholder="Last name" required>
           </div>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
           <div>
             <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_email">Email Address</label>
-            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="email" id="b_email" name="email" placeholder="your@email.com" required>
+            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="email" id="b_email" required name="email" placeholder="your@email.com" required>
           </div>
           <div>
             <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_phone">Phone Number</label>
-            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="tel" id="b_phone" name="phone" placeholder="(555) 000-0000" required>
+            <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="tel" id="b_phone" required name="phone" placeholder="(555) 000-0000" required>
           </div>
         </div>
 
@@ -793,11 +793,11 @@ footer { background: #1a0608; padding: 40px 24px; text-align: center; }
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end;">
             <div>
               <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_checkin">Check-In Date</label>
-              <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="date" id="b_checkin" name="checkin_date" onchange="bCalcCheckout()">
+              <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="date" id="b_checkin" required name="checkin_date" onchange="bCalcCheckout()">
             </div>
             <div>
               <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;" for="b_nights">Nights</label>
-              <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="number" id="b_nights" name="nights" min="1" max="30" placeholder="e.g. 5" oninput="bCalcCheckout()">
+              <input style="width:100%;padding:13px 16px;border:1.5px solid #e2ddd4;border-radius:12px;font-size:.95rem;background:#fdfaf5;box-sizing:border-box;outline:none;font-family:inherit;" type="number" id="b_nights" required name="nights" min="1" max="30" placeholder="e.g. 5" oninput="bCalcCheckout()">
             </div>
             <div>
               <label style="display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);margin-bottom:7px;">Check-Out Date</label>
@@ -984,9 +984,11 @@ async function bSubmitForm() {
   if (!lname) missing.push('Last name');
   if (!email) missing.push('Email');
   if (!phone) missing.push('Phone');
+  if (!document.getElementById('b_checkin').value) missing.push('Check-in date');
+  if (!document.getElementById('b_nights').value) missing.push('Number of nights');
   if (!travelers) missing.push('# of guests');
   if (!roommate) missing.push('Rooming with (type N/A if solo)');
-  if (rooms.length === 0) missing.push('Room preference');
+  if (rooms.length === 0) missing.push('Room preference (select at least one)');
 
   if (missing.length > 0) {
     alert('Please complete the following fields:\n\n' + missing.join('\n'));
